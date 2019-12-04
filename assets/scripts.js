@@ -89,7 +89,7 @@ function saveTeamNames(teamNameObject) {
 
 function endGame() {
 		$('#round, #question .label').hide();
-		$('.question').html('<h1 id="question-value">Game Over</h1>');
+		$('#question').text('Game Over').css('text-align', 'center');
 		
 		var message = '';
 		if(points[0] > points [1]) {
