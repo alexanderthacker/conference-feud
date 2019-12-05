@@ -50,7 +50,7 @@ body {
 		line-height:1em;
 }
 
-#question-info .label {
+#question .label {
 		display:block;
 		font-size:.35em;
 		line-height:1em;
@@ -173,6 +173,7 @@ body {
 		color:#333;
 		font-size:1.5em;
 		transition:1s all;
+		margin-top:.2em;
 }
 
 .button:hover {
@@ -188,7 +189,18 @@ body {
 }
 
 #next-round-button {
+
+}
+
+
+#next-previous-buttons {
+		font-size:.8em;
 		position:absolute;
 		bottom:.5em;
 		right:.5em;
+		text-align:center;
+}
+
+#next-previous-buttons .button {
+		padding:10px 20px;
 }

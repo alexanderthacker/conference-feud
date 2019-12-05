@@ -1,9 +1,4 @@
-// To Do 
-// End Game Screen
-// Practice Round
-// X Editable Points
-// X Alternate the starting team
-// X Fix Text Size
+var practiceRound = true;
 
 var template = '';
 
@@ -61,6 +56,14 @@ function initialize() {
 				initialize();
 		});
 
+		// Trigger Next Question
+		$('#previous-round-button').click(function() {
+				if(!previousQuestion()) {
+						return;
+				}
+				initialize();
+		});
+		
 		// Save Team Names
 		$('.team-name').blur(function() {
 				saveTeamNames($(this));
@@ -109,8 +112,15 @@ function initializeLabels() {
 
 		$('#team-0 .team-name').text(teamNames[0]);
 		$('#team-1 .team-name').text(teamNames[1]);
-		
-		$('#round-number').text(currentRound + 1);
+
+		if(practiceRound === false) {
+				$('#round-number').text(currentRound + 1);
+		} if(practiceRound === true && currentRound > 0) {
+				$('#round-number').text(currentRound);
+		} else {
+				$('#round .label').hide()
+		}
+
 		$('#round-value').text(roundLabel);
 		
 		$('#question-number').text(currentQuestion + 1);
@@ -139,6 +149,18 @@ function nextQuestion() {
 		// Set the correct team to start
 		currentTeam = ((priorQuestions[currentRound] + currentQuestion) % 2);
 		return true;
+}
+
+function previousQuestion() {
+		if(currentQuestion > 0) {
+				currentQuestion--;
+				return true;
+		} else if(currentQuestion == 0 && currentRound > 0) {
+				currentRound--;
+				currentQuestion =	answers[currentRound].questions.length - 1;
+				return true;
+		}
+		return false;
 }
 		
 function wrongAnswer(teamNumber) {
